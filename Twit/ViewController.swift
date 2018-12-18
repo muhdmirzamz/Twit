@@ -8,13 +8,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+import Firebase
 
+class ViewController: UIViewController {
+	
+	@IBOutlet var usernameTxtField: UITextField!
+	@IBOutlet var passwordTxtField: UITextField!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 
-
+	@IBAction func signup() {
+		let username = self.usernameTxtField.text
+		let password = self.passwordTxtField.text
+		
+		FIRAuth.auth()?.createUser(withEmail: username!, password: password!, completion: { (user, error) in
+			if error != nil {
+				guard let user = user else {
+					return
+				}
+				
+				print("User email: \(user.email!)")
+			}
+		})
+	}
 }
 

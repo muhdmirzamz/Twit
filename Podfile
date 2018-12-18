@@ -7,5 +7,5 @@ target 'Twit' do
 
   # Pods for Twit
   pod 'Firebase/Core'
-
+  pod 'Firebase/Auth'
 end
