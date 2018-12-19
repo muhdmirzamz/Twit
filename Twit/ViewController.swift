@@ -24,9 +24,19 @@ class ViewController: UIViewController {
 		let username = self.usernameTxtField.text
 		let password = self.passwordTxtField.text
 		
+		// email cannot be duplicate
+		// password has to be 6 or more characters
 		FIRAuth.auth()?.createUser(withEmail: username!, password: password!, completion: { (user, error) in
 			if error != nil {
 				guard let user = user else {
+					DispatchQueue.main.async {
+						let alert = UIAlertController.init(title: "Error", message: "", preferredStyle: .alert)
+						let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+						
+						alert.addAction(okAction)
+						
+						self.present(alert, animated: true, completion: nil)
+					}
 					return
 				}
 				
