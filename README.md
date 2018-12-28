@@ -3,7 +3,10 @@
 A Twitter clone
 
 ### Changelog
-**23 December 2018 - v0.1.2**
+**28 December 2018 - v0.1.3-alpha**
+- Implemented sign in
+
+**23 December 2018 - v0.1.2-alpha**
 - Made a sign up screen
 - Improved sign up error handling
 
