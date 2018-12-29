@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**29 December 2018 - v0.1.3-alpha.1**
+- Added the compose view controller
+
 **28 December 2018 - v0.1.3-alpha**
 - Implemented sign in
 

@@ -14,6 +14,7 @@
 		AA74DB8A21C7C1D300D7DAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB8921C7C1D300D7DAD3 /* Assets.xcassets */; };
 		AA74DB8D21C7C1D400D7DAD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB8B21C7C1D400D7DAD3 /* LaunchScreen.storyboard */; };
 		AA74DB9521C7C33A00D7DAD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB9421C7C33A00D7DAD3 /* GoogleService-Info.plist */; };
+		AAD0522E21D7B9C4000BF205 /* ComposeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD0522D21D7B9C4000BF205 /* ComposeTweetViewController.swift */; };
 		AAD9D3C621CF28F10068A946 /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD9D3C521CF28F10068A946 /* SigninViewController.swift */; };
 		DC9136F5F2D54D6E19F3EE83 /* Pods_Twit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A66B37C7660EB2E1F5E8FD6C /* Pods_Twit.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		AA74DB8C21C7C1D400D7DAD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA74DB8E21C7C1D400D7DAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA74DB9421C7C33A00D7DAD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AAD0522D21D7B9C4000BF205 /* ComposeTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTweetViewController.swift; sourceTree = "<group>"; };
 		AAD9D3C521CF28F10068A946 /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 				AA74DB8121C7C1D100D7DAD3 /* SignupViewController.swift */,
 				AAD9D3C521CF28F10068A946 /* SigninViewController.swift */,
 				AA74DB8321C7C1D100D7DAD3 /* Main.storyboard */,
+				AAD0522D21D7B9C4000BF205 /* ComposeTweetViewController.swift */,
 				AA74DB8921C7C1D300D7DAD3 /* Assets.xcassets */,
 				AA74DB8B21C7C1D400D7DAD3 /* LaunchScreen.storyboard */,
 				AA74DB8E21C7C1D400D7DAD3 /* Info.plist */,
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD0522E21D7B9C4000BF205 /* ComposeTweetViewController.swift in Sources */,
 				AAD9D3C621CF28F10068A946 /* SigninViewController.swift in Sources */,
 				AA74DB8821C7C1D100D7DAD3 /* Twit.xcdatamodeld in Sources */,
 				AA74DB8221C7C1D100D7DAD3 /* SignupViewController.swift in Sources */,
