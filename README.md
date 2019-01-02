@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**2 January 2019 - v0.1.4-alpha**
+- You are now able to tweet something
+
 **29 December 2018 - v0.1.3-alpha.1**
 - Added the compose view controller
 

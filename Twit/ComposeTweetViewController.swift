@@ -8,8 +8,13 @@
 
 import UIKit
 
+import FirebaseDatabase
+import FirebaseAuth
+
 class ComposeTweetViewController: UIViewController {
 
+	@IBOutlet var textview: UITextView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +24,12 @@ class ComposeTweetViewController: UIViewController {
 	@IBAction func close() {
 		self.dismiss(animated: true, completion: nil)
 	}
-    
+	
+	@IBAction func tweet() {
+		if let currUser = FIRAuth.auth()?.currentUser {
+			var ref = FIRDatabase.database().reference().child("/Users/\(currUser)/tweet/1").setValue(self.textview.text)
+		}
+	}
 
     /*
     // MARK: - Navigation

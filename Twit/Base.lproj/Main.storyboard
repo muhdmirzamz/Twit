@@ -121,8 +121,15 @@
                                 <action selector="close" destination="I8Q-tl-W2l" id="DWG-vJ-IHg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="cDr-Yj-6GB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="cDr-Yj-6GB">
+                            <connections>
+                                <action selector="tweet" destination="I8Q-tl-W2l" id="ujt-ab-dwV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textview" destination="t8i-bw-SrE" id="JFq-6J-Fuh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hur-Ee-2bF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
