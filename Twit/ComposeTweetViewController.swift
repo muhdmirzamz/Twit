@@ -26,8 +26,16 @@ class ComposeTweetViewController: UIViewController {
 	}
 	
 	@IBAction func tweet() {
+		let tweetDict = ["tweet_content": self.textview.text]
+		
 		if let currUser = FIRAuth.auth()?.currentUser {
-			var ref = FIRDatabase.database().reference().child("/Users/\(currUser)/tweet/1").setValue(self.textview.text)
+			var ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
+			ref.observeSingleEvent(of: .value) { (snapshot) in
+				ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet/t\(snapshot.childrenCount + 1)")
+				ref.setValue(tweetDict)
+				
+				self.dismiss(animated: true, completion: nil)
+			}
 		}
 	}
 

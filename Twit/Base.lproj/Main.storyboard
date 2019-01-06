@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="101.19940029985008"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Feed Table View Controller-->
         <scene sceneID="5bv-rc-Mhq">
             <objects>
-                <tableViewController id="OKg-hS-PXA" sceneMemberID="viewController">
+                <tableViewController id="OKg-hS-PXA" customClass="FeedTableViewController" customModule="Twit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="W4p-dS-ST3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
