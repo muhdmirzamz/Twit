@@ -13,6 +13,8 @@ import FirebaseAuth
 
 class FeedTableViewController: UITableViewController {
 
+	var tweetArray = [String]()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,10 +26,25 @@ class FeedTableViewController: UITableViewController {
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
+		self.tweetArray.removeAll()
+		self.tableView.reloadData()
+		
 		if let currUser = FIRAuth.auth()?.currentUser {
 			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
 			ref.observeSingleEvent(of: .value) { (snapshot) in
-				print(snapshot.childrenCount)
+				if let dict = snapshot.value as? NSDictionary {
+					for i in dict {
+						if let innerDict = i.value as? NSDictionary {
+							if let tweet = innerDict.value(forKey: "tweet_content") as? String {
+								self.tweetArray.append(tweet)
+
+								self.tableView.reloadData()
+								
+								print(tweet)
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -36,23 +53,22 @@ class FeedTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.tweetArray.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
+		cell.textLabel?.text = self.tweetArray[indexPath.row]
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
