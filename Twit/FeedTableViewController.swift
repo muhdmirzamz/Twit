@@ -27,7 +27,6 @@ class FeedTableViewController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		self.tweetArray.removeAll()
-		self.tableView.reloadData()
 		
 		if let currUser = FIRAuth.auth()?.currentUser {
 			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
@@ -37,10 +36,20 @@ class FeedTableViewController: UITableViewController {
 						if let innerDict = i.value as? NSDictionary {
 							if let tweet = innerDict.value(forKey: "tweet_content") as? String {
 								self.tweetArray.append(tweet)
-
-								self.tableView.reloadData()
 								
 								print(tweet)
+							}
+							
+							if let timestamp = innerDict.value(forKey: "timestamp") as? String {
+								let dateFormatter = DateFormatter()
+								
+								dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+								dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
+								// 2019-01-14 14:14:43 +0000
+								
+								if let date = dateFormatter.date(from: timestamp) {
+									print(date)
+								}
 							}
 						}
 					}

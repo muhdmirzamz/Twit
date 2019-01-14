@@ -26,7 +26,12 @@ class ComposeTweetViewController: UIViewController {
 	}
 	
 	@IBAction func tweet() {
-		let tweetDict = ["tweet_content": self.textview.text]
+		let dateString = self.getStringForDateToday()
+		
+		let tweetDict: [String : Any] = [
+				"tweet_content": self.textview.text,
+				"timestamp": dateString
+		]
 		
 		if let currUser = FIRAuth.auth()?.currentUser {
 			FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet").childByAutoId().setValue(tweetDict)
@@ -34,6 +39,42 @@ class ComposeTweetViewController: UIViewController {
 			self.dismiss(animated: true, completion: nil)
 		}
 	}
+	
+	func getStringForDateToday() -> String {
+		let dateFormatter = DateFormatter()
+		
+		dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
+		
+		print(Date())
+		
+		return dateFormatter.string(from: Date())
+		
+//		if let date = dateFormatter.date(from: dateString) {
+//			dateFormatter.timeZone = TimeZone.init(abbreviation: "UTC")
+//			dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
+//
+//			return dateFormatter.string(from: date)
+//		} else {
+//			print("Error date")
+//		}
+		
+		//return "Error"
+	}
+	
+//	func compareDate() {
+//		let dateFormatter = DateFormatter()
+//
+//		dateFormatter.timeZone = TimeZone.init(abbreviation: "UTC")
+//		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
+//
+//		let dateString = dateFormatter.string(from: arg1)
+//
+//		if let date = dateFormatter.date(from: dateString) {
+//			dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+//			dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
+//		}
+//	}
 
     /*
     // MARK: - Navigation
