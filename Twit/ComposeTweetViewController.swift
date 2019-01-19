@@ -45,36 +45,9 @@ class ComposeTweetViewController: UIViewController {
 		
 		dateFormatter.timeZone = TimeZone.autoupdatingCurrent
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
-		
-		print(Date())
-		
+
 		return dateFormatter.string(from: Date())
-		
-//		if let date = dateFormatter.date(from: dateString) {
-//			dateFormatter.timeZone = TimeZone.init(abbreviation: "UTC")
-//			dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
-//
-//			return dateFormatter.string(from: date)
-//		} else {
-//			print("Error date")
-//		}
-		
-		//return "Error"
 	}
-	
-//	func compareDate() {
-//		let dateFormatter = DateFormatter()
-//
-//		dateFormatter.timeZone = TimeZone.init(abbreviation: "UTC")
-//		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
-//
-//		let dateString = dateFormatter.string(from: arg1)
-//
-//		if let date = dateFormatter.date(from: dateString) {
-//			dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-//			dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZZ"
-//		}
-//	}
 
     /*
     // MARK: - Navigation

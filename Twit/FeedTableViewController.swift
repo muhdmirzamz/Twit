@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class FeedTableViewController: UITableViewController {
 
-	var tweetArray = [String]()
+	var tweetArray = [Tweet]()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,28 +29,31 @@ class FeedTableViewController: UITableViewController {
 		self.tweetArray.removeAll()
 		
 		if let currUser = FIRAuth.auth()?.currentUser {
+			
 			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
+
 			ref.observeSingleEvent(of: .value) { (snapshot) in
 				if let dict = snapshot.value as? NSDictionary {
 					for i in dict {
+
+						var tweet = Tweet()
+
 						if let innerDict = i.value as? NSDictionary {
-							if let tweet = innerDict.value(forKey: "tweet_content") as? String {
-								self.tweetArray.append(tweet)
-								
-								print(tweet)
-							}
-							
 							if let timestamp = innerDict.value(forKey: "timestamp") as? String {
-								let dateFormatter = DateFormatter()
-								
-								dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-								dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"
-								// 2019-01-14 14:14:43 +0000
-								
-								if let date = dateFormatter.date(from: timestamp) {
-									print(date)
-								}
+
+								tweet.timestamp = timestamp
 							}
+
+							if let tweetContent = innerDict.value(forKey: "tweet_content") as? String {
+
+								tweet.tweetContent = tweetContent
+							}
+
+							self.tweetArray.append(tweet)
+
+							self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
+
+							self.tableView.reloadData()
 						}
 					}
 				}
@@ -74,7 +77,7 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-		cell.textLabel?.text = self.tweetArray[indexPath.row]
+		cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
 
         return cell
     }

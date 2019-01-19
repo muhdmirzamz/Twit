@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**19 January 2019 - v0.1.5-alpha**
+- Chronological order is here
+
 **2 January 2019 - v0.1.4-alpha**
 - You are now able to tweet something
 
