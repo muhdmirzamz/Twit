@@ -40,12 +40,10 @@ class FeedTableViewController: UITableViewController {
 
 						if let innerDict = i.value as? NSDictionary {
 							if let timestamp = innerDict.value(forKey: "timestamp") as? String {
-
 								tweet.timestamp = timestamp
 							}
 
 							if let tweetContent = innerDict.value(forKey: "tweet_content") as? String {
-
 								tweet.tweetContent = tweetContent
 							}
 
