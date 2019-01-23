@@ -1,0 +1,85 @@
+//
+//  ProfileViewController.swift
+//  Twit
+//
+//  Created by Muhd Mirza on 23/1/19.
+//  Copyright © 2019 muhdmirzamz. All rights reserved.
+//
+
+import UIKit
+
+import FirebaseAuth
+import FirebaseDatabase
+
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+	@IBOutlet var tableview: UITableView!
+
+	var tweetArray = [Tweet]()
+	
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+		
+		self.tableview.dataSource = self
+		self.tableview.delegate = self
+    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		self.tweetArray.removeAll()
+		
+		if let currUser = FIRAuth.auth()?.currentUser {
+			
+			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
+			
+			ref.observeSingleEvent(of: .value) { (snapshot) in
+				if let dict = snapshot.value as? NSDictionary {
+					for i in dict {
+						
+						var tweet = Tweet()
+						
+						if let innerDict = i.value as? NSDictionary {
+							if let timestamp = innerDict.value(forKey: "timestamp") as? String {
+								tweet.timestamp = timestamp
+							}
+							
+							if let tweetContent = innerDict.value(forKey: "tweet_content") as? String {
+								tweet.tweetContent = tweetContent
+							}
+							
+							self.tweetArray.append(tweet)
+							
+							self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
+							
+							self.tableview.reloadData()
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return self.tweetArray.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		
+		// Configure the cell...
+		cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+		
+		return cell
+	}
+	
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
