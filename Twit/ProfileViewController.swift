@@ -48,12 +48,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 							}
 							
 							self.tweetArray.append(tweet)
-							
-							self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
-							
-							self.tableview.reloadData()
 						}
 					}
+					
+					self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
+					
+					self.tableview.reloadData()
 				}
 			}
 		}
@@ -67,7 +67,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		
 		// Configure the cell...
-		cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+		if self.tweetArray.count > 0 {
+			cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+		} else {
+			cell.textLabel?.text = ""
+		}
 		
 		return cell
 	}

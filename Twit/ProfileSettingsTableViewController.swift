@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ProfileSettingsTableViewController: UITableViewController {
+import FirebaseStorage
+import FirebaseAuth
+
+class ProfileSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	var settingsArray = ["Profile Picture"]
 
@@ -47,11 +50,46 @@ class ProfileSettingsTableViewController: UITableViewController {
 		let imgPicker = UIImagePickerController()
 		imgPicker.allowsEditing = true
 		imgPicker.sourceType = .photoLibrary
+		imgPicker.delegate = self
 		
 		self.present(imgPicker, animated: true, completion: nil)
 	}
 	
 	@IBAction func close() {
+		self.dismiss(animated: true, completion: nil)
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		//let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+		let url = info[UIImagePickerController.InfoKey.imageURL] as? URL
+		
+		if let currUser = FIRAuth.auth()?.currentUser {
+			let storageRef = FIRStorage.storage().reference().child("\(currUser.uid)/profile_img.png")
+			do {
+				let data = try Data.init(contentsOf: url!)
+				
+				storageRef.put(data, metadata: nil) { (metadata, error) in
+					if error != nil {
+						print(error as Any)
+					}
+				}
+			} catch {
+				print("Error")
+			}
+		}
+		
+		self.dismiss(animated: true) {
+			let controller = UIAlertController.init(title: "Image successfully uploaded", message: "", preferredStyle: .alert)
+			
+			let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+			
+			controller.addAction(okAction)
+			
+			self.present(controller, animated: true, completion: nil)
+		}
+	}
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		self.dismiss(animated: true, completion: nil)
 	}
 

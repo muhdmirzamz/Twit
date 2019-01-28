@@ -3,6 +3,10 @@
 A Twitter clone
 
 ### Changelog
+**28 January 2019 - v0.1.6-alpha**
+- You can now upload a profile image
+- Fixed a crash when switching quickly between the feed and your profile page
+
 **19 January 2019 - v0.1.5-alpha**
 - Chronological order is here
 

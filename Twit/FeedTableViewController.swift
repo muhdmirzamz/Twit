@@ -48,12 +48,12 @@ class FeedTableViewController: UITableViewController {
 							}
 
 							self.tweetArray.append(tweet)
-
-							self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
-
-							self.tableView.reloadData()
 						}
 					}
+					
+					self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
+					
+					self.tableView.reloadData()
 				}
 			}
 		}
@@ -75,7 +75,12 @@ class FeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         // Configure the cell...
-		cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+		if self.tweetArray.count > 0 {
+			cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+		} else {
+			cell.textLabel?.text = ""
+		}
+		
 
         return cell
     }
