@@ -10,10 +10,12 @@ import UIKit
 
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 	@IBOutlet var tableview: UITableView!
-
+	@IBOutlet var imageView: UIImageView!
+	
 	var tweetArray = [Tweet]()
 	
     override func viewDidLoad() {
@@ -26,6 +28,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
+		// download profile image
+		// testing image size, might want to change in beta stage?
+		if let currUser = FIRAuth.auth()?.currentUser {
+			let storageRef = FIRStorage.storage().reference().child("\(currUser.uid)/profile_img.png")
+			storageRef.data(withMaxSize: (1 * 1024 * 1024)) { (data, error) in
+				if error == nil {
+					if let data = data {
+						let image = UIImage.init(data: data)
+						self.imageView.image = image
+					}
+				}
+			}
+		}
+		
+		
+		// download tweets
 		self.tweetArray.removeAll()
 		
 		if let currUser = FIRAuth.auth()?.currentUser {

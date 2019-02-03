@@ -181,6 +181,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="imageView" destination="qpi-q0-Qeu" id="bWz-Ej-VAU"/>
                         <outlet property="tableview" destination="svl-ug-esn" id="GIp-JR-aho"/>
                     </connections>
                 </viewController>

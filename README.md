@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**3 February 2019 - v0.1.7-alpha**
+- Profile images show up in your profile page after you upload it
+
 **28 January 2019 - v0.1.6-alpha**
 - You can now upload a profile image
 - Fixed a crash when switching quickly between the feed and your profile page
