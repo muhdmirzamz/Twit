@@ -35,10 +35,9 @@ class ComposeTweetViewController: UIViewController {
 				"timestamp": dateString
 		]
 		
-		if let currUser = FIRAuth.auth()?.currentUser {
-			FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet").childByAutoId().setValue(tweetDict)
-			
-			self.dismiss(animated: true, completion: nil)
+		if let currUser = Auth.auth().currentUser {
+            Database.database().reference().child("/Users/\(currUser.uid)/tweet").childByAutoId().setValue(tweetDict)
+            self.dismiss(animated: true, completion: nil)
 		}
 	}
 	

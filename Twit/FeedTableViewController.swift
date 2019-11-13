@@ -28,15 +28,15 @@ class FeedTableViewController: UITableViewController {
 	override func viewWillAppear(_ animated: Bool) {
 		self.tweetArray.removeAll()
 		
-		if let currUser = FIRAuth.auth()?.currentUser {
+		if let currUser = Auth.auth().currentUser {
 			
-			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
+			let ref = Database.database().reference().child("/Users/\(currUser.uid)/tweet")
 
 			ref.observeSingleEvent(of: .value) { (snapshot) in
 				if let dict = snapshot.value as? NSDictionary {
 					for i in dict {
 
-						var tweet = Tweet()
+						let tweet = Tweet()
 
 						if let innerDict = i.value as? NSDictionary {
 							if let timestamp = innerDict.value(forKey: "timestamp") as? String {

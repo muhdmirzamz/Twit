@@ -63,16 +63,12 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 		//let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
 		let url = info[UIImagePickerController.InfoKey.imageURL] as? URL
 		
-		if let currUser = FIRAuth.auth()?.currentUser {
-			let storageRef = FIRStorage.storage().reference().child("\(currUser.uid)/profile_img.png")
+		if let currUser = Auth.auth().currentUser {
+			let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
 			do {
 				let data = try Data.init(contentsOf: url!)
 				
-				storageRef.put(data, metadata: nil) { (metadata, error) in
-					if error != nil {
-						print(error as Any)
-					}
-				}
+                storageRef.putData(data)
 			} catch {
 				print("Error")
 			}

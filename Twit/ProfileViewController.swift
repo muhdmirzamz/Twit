@@ -30,31 +30,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 	override func viewWillAppear(_ animated: Bool) {
 		// download profile image
 		// testing image size, might want to change in beta stage?
-		if let currUser = FIRAuth.auth()?.currentUser {
-			let storageRef = FIRStorage.storage().reference().child("\(currUser.uid)/profile_img.png")
-			storageRef.data(withMaxSize: (1 * 1024 * 1024)) { (data, error) in
-				if error == nil {
-					if let data = data {
-						let image = UIImage.init(data: data)
-						self.imageView.image = image
-					}
-				}
-			}
+		if let currUser = Auth.auth().currentUser {
+			let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
+            
+            storageRef.getData(maxSize: (1 * 1024 * 1024)) { (data, error) in
+                if error == nil {
+                    if let data = data {
+                        let image = UIImage.init(data: data)
+                        self.imageView.image = image
+                    }
+                }
+            }
 		}
 		
 		
 		// download tweets
 		self.tweetArray.removeAll()
 		
-		if let currUser = FIRAuth.auth()?.currentUser {
+		if let currUser = Auth.auth().currentUser {
 			
-			let ref = FIRDatabase.database().reference().child("/Users/\(currUser.uid)/tweet")
+			let ref = Database.database().reference().child("/Users/\(currUser.uid)/tweet")
 			
 			ref.observeSingleEvent(of: .value) { (snapshot) in
 				if let dict = snapshot.value as? NSDictionary {
 					for i in dict {
 						
-						var tweet = Tweet()
+						let tweet = Tweet()
 						
 						if let innerDict = i.value as? NSDictionary {
 							if let timestamp = innerDict.value(forKey: "timestamp") as? String {

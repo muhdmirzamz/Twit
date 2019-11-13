@@ -8,7 +8,7 @@
 
 import UIKit
 
-import Firebase
+import FirebaseAuth
 
 class SignupViewController: UIViewController {
 	
@@ -25,46 +25,45 @@ class SignupViewController: UIViewController {
 	@IBAction func signup() {
 		let username = self.usernameTxtField.text
 		let password = self.passwordTxtField.text
-
+        
 		// email cannot be duplicate
 		// password has to be 6 or more characters
-		FIRAuth.auth()?.createUser(withEmail: username!, password: password!, completion: { (user, error) in
-			
-			var alertTitle = ""
-			var alertMsg = ""
-			var okAction: UIAlertAction?
-			
-			if let user = user {
-				alertTitle = "Sign up successful"
-				
-				okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-					self.dismiss(animated: true, completion: nil)
-				})
-				
-				print("User email: \(user.email)")
-			} else {
-				alertTitle = "Error"
-				
-				if let error = error {
-					alertMsg = error.localizedDescription
-					
-					okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-					
-					self.usernameTxtField.text = ""
-					self.passwordTxtField.text = ""
-					
-					self.usernameTxtField.becomeFirstResponder()
-				}
-			}
+        Auth.auth().createUser(withEmail: username!, password: password!) { (dataResult, error) in
+            var alertTitle = ""
+            var alertMsg = ""
+            var okAction: UIAlertAction?
+            
+            if let dataResult = dataResult {
+                alertTitle = "Sign up successful"
+                
+                okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+                print("User email: \(dataResult.user.email)")
+            } else {
+                alertTitle = "Error"
+                
+                if let error = error {
+                    alertMsg = error.localizedDescription
+                    
+                    okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                    
+                    self.usernameTxtField.text = ""
+                    self.passwordTxtField.text = ""
+                    
+                    self.usernameTxtField.becomeFirstResponder()
+                }
+            }
 
-			DispatchQueue.main.async {
-				let alert = UIAlertController.init(title: alertTitle, message: alertMsg, preferredStyle: .alert)
-				
-				alert.addAction(okAction!)
-				
-				self.present(alert, animated: true, completion: nil)
-			}
-		})
+            DispatchQueue.main.async {
+                let alert = UIAlertController.init(title: alertTitle, message: alertMsg, preferredStyle: .alert)
+                
+                alert.addAction(okAction!)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
 	}
 	
 	@IBAction func close() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-import Firebase
+import FirebaseAuth
 
 class SigninViewController: UIViewController {
 
@@ -30,12 +30,13 @@ class SigninViewController: UIViewController {
 			return
 		}
 		
-		FIRAuth.auth()?.signIn(withEmail: username, password: password, completion: { (user, error) in
+        
+		Auth.auth().signIn(withEmail: username, password: password, completion: { (dataResult, error) in
 			var alertTitle = ""
 			var alertMsg = ""
 			var okAction: UIAlertAction?
 			
-			if let user = user {
+			if let dataResult = dataResult {
 				alertTitle = "Sign in successful"
 				
 				okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
@@ -45,7 +46,7 @@ class SigninViewController: UIViewController {
 					}
 				})
 				
-				print("User email: \(user.email)")
+                print("User email: \(dataResult.user.email)")
 			} else {
 				alertTitle = "Error"
 				

@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**13 November 2019 - v0.1.7-alpha.1
+- Updated Firebase and syntax
+
 **3 February 2019 - v0.1.7-alpha**
 - Profile images show up in your profile page after you upload it
 
