@@ -3,6 +3,9 @@
 A Twitter clone
 
 ### Changelog
+**18 November 2019 - v0.1.7-alpha.2**
+- Changed feed and compose views to a fullscreen modal presentation style
+
 **13 November 2019 - v0.1.7-alpha.1**
 - Updated Firebase and syntax
 
