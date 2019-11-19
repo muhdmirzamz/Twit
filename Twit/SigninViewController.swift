@@ -19,6 +19,8 @@ class SigninViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.usernameTxtField.text = "test@gmail.com"
+        self.passwordTxtField.text = "password"
     }
 	
 	@IBAction func signin() {

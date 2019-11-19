@@ -51,6 +51,7 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 		imgPicker.allowsEditing = true
 		imgPicker.sourceType = .photoLibrary
 		imgPicker.delegate = self
+        imgPicker.modalPresentationStyle = .fullScreen
 		
 		self.present(imgPicker, animated: true, completion: nil)
 	}

@@ -3,6 +3,10 @@
 A Twitter clone
 
 ### Changelog
+**19 November 2019 - v0.1.7-alpha.3**
+- Fixed autolayout in Profile view
+- Changed image picker in profile settings to fullscreen modal presentation style
+
 **18 November 2019 - v0.1.7-alpha.2**
 - Changed feed and compose views to a fullscreen modal presentation style
 
