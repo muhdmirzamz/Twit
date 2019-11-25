@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class ProfileSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
-	var settingsArray = ["Profile Picture"]
+	var settingsArray = ["Profile Picture", "Logout"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +47,37 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
     }
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let imgPicker = UIImagePickerController()
-		imgPicker.allowsEditing = true
-		imgPicker.sourceType = .photoLibrary
-		imgPicker.delegate = self
-        imgPicker.modalPresentationStyle = .fullScreen
-		
-		self.present(imgPicker, animated: true, completion: nil)
+        
+        switch indexPath.row {
+        case 0:
+            let imgPicker = UIImagePickerController()
+            imgPicker.allowsEditing = true
+            imgPicker.sourceType = .photoLibrary
+            imgPicker.delegate = self
+            imgPicker.modalPresentationStyle = .fullScreen
+            
+            self.present(imgPicker, animated: true, completion: nil)
+            
+            break
+            
+//        case 1:
+//            do {
+//                try Auth.auth().signOut()
+//
+//                self.dismiss(animated: true) {
+//                    self.dismiss(animated: true, completion: nil)
+//                }
+//            } catch {
+//                print("Error signing out!\n")
+//            }
+//
+//            break
+            
+        default:
+            break
+        }
+        
+        
 	}
 	
 	@IBAction func close() {
@@ -61,7 +85,6 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-		//let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
 		let url = info[UIImagePickerController.InfoKey.imageURL] as? URL
 		
 		if let currUser = Auth.auth().currentUser {
