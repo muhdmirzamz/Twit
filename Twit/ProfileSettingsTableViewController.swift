@@ -11,8 +11,14 @@ import UIKit
 import FirebaseStorage
 import FirebaseAuth
 
+protocol ProfileSettingsProtocol {
+    func dismissViewController()
+}
+
 class ProfileSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
+    var delegate: ProfileSettingsProtocol?
+    
 	var settingsArray = ["Profile Picture", "Logout"]
 
     override func viewDidLoad() {
@@ -23,6 +29,7 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     // MARK: - Table view data source
@@ -60,18 +67,18 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
             
             break
             
-//        case 1:
-//            do {
-//                try Auth.auth().signOut()
-//
-//                self.dismiss(animated: true) {
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            } catch {
-//                print("Error signing out!\n")
-//            }
-//
-//            break
+        case 1:
+            do {
+                try Auth.auth().signOut()
+
+                self.dismiss(animated: true) {
+                    self.delegate?.dismissViewController()
+                }
+            } catch {
+                print("Error signing out!\n")
+            }
+
+            break
             
         default:
             break

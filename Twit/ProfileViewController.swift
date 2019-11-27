@@ -12,7 +12,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileSettingsProtocol {
+    
 	@IBOutlet var tableview: UITableView!
 	@IBOutlet var imageView: UIImageView!
 	
@@ -94,15 +95,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 		
 		return cell
 	}
-	
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func dismissViewController() {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
+	
+/*
+     MARK: - Navigation
+
+     In a storyboard-based application, you will often want to do a little preparation before navigation
+ */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         //Get the new view controller using segue.destination.
+         //Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ProfileSettingsTableViewControllerSegue" {
+            let navController = segue.destination as? UINavigationController
+            let profileSettingsTableViewController = navController?.viewControllers.first as? ProfileSettingsTableViewController
+            
+            profileSettingsTableViewController?.delegate = self
+        }
+    }
+    
 
 }

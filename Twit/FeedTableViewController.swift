@@ -11,8 +11,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class FeedTableViewController: UITableViewController {
 
+class FeedTableViewController: UITableViewController {
+    
 	var tweetArray = [Tweet]()
 	
     override func viewDidLoad() {

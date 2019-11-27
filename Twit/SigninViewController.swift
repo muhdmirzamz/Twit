@@ -44,6 +44,7 @@ class SigninViewController: UIViewController {
 				okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
 					DispatchQueue.main.async {
 						let tabBarController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabBarController") as? UITabBarController
+                        
                         tabBarController?.modalPresentationStyle = .fullScreen
 						self.present(tabBarController!, animated: true, completion: nil)
 					}
