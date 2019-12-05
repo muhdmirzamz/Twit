@@ -13,13 +13,14 @@ import FirebaseAuth
 
 protocol ProfileSettingsProtocol {
     func dismissViewController()
+    func setBio()
 }
 
 class ProfileSettingsTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
     var delegate: ProfileSettingsProtocol?
     
-	var settingsArray = ["Profile Picture", "Logout"]
+	var settingsArray = ["Profile Picture", "Profile Bio", "Logout"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +68,7 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
             
             break
             
-        case 1:
+        case 2:
             do {
                 try Auth.auth().signOut()
 

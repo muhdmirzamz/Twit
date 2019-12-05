@@ -14,10 +14,13 @@ import FirebaseStorage
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileSettingsProtocol {
     
+    @IBOutlet var bio: UILabel!
+    
 	@IBOutlet var tableview: UITableView!
 	@IBOutlet var imageView: UIImageView!
 	
 	var tweetArray = [Tweet]()
+    var profileImg: UIImage?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,26 +32,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
-		// download profile image
-		// testing image size, might want to change in beta stage?
 		if let currUser = Auth.auth().currentUser {
-			let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
-            
-            storageRef.getData(maxSize: (1 * 1024 * 1024)) { (data, error) in
+            let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
+            storageRef.getData(maxSize: ((1 * 1024 * 1024))) { (data, error) in
                 if error == nil {
                     if let data = data {
-                        let image = UIImage.init(data: data)
-                        self.imageView.image = image
+                        self.profileImg = UIImage.init(data: data)
+                        self.imageView.image = self.profileImg
+                        
+                        DispatchQueue.main.async {
+                            self.tableview.reloadData()
+                        }
                     }
                 }
             }
-		}
-		
-		
-		// download tweets
-		self.tweetArray.removeAll()
-		
-		if let currUser = Auth.auth().currentUser {
+            
+            self.tweetArray.removeAll()
 			
 			let ref = Database.database().reference().child("/Users/\(currUser.uid)/tweet")
 			
@@ -73,7 +72,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 					
 					self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
 					
-					self.tableview.reloadData()
+					DispatchQueue.main.async {
+                        self.tableview.reloadData()
+                    }
 				}
 			}
 		}
@@ -84,14 +85,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-		
-		// Configure the cell...
-		if self.tweetArray.count > 0 {
-			cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
-		} else {
-			cell.textLabel?.text = ""
-		}
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TweetTableViewCell else {
+            print("Error on loading cell")
+            
+            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        }
+
+        // Configure the cell...
+        if self.tweetArray.count > 0 {
+            cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+            cell.profileImageView.image = self.profileImg
+        } else {
+            cell.textLabel?.text = ""
+        }
 		
 		return cell
 	}
@@ -100,6 +106,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.dismiss(animated: true, completion: nil)
     }
 	
+    func setBio() {
+        
+    }
+    
 /*
      MARK: - Navigation
 

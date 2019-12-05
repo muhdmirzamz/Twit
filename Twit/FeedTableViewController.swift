@@ -10,11 +10,13 @@ import UIKit
 
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
 
 class FeedTableViewController: UITableViewController {
     
 	var tweetArray = [Tweet]()
+    var profileImg: UIImage?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +29,24 @@ class FeedTableViewController: UITableViewController {
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
-		self.tweetArray.removeAll()
-		
 		if let currUser = Auth.auth().currentUser {
-			
+            let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
+            storageRef.getData(maxSize: ((1 * 1024 * 1024))) { (data, error) in
+                if error == nil {
+                    if let data = data {
+                        self.profileImg = UIImage.init(data: data)
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+            
+
+            // download tweets
+            self.tweetArray.removeAll()
+            
 			let ref = Database.database().reference().child("/Users/\(currUser.uid)/tweet")
 
 			ref.observeSingleEvent(of: .value) { (snapshot) in
@@ -53,8 +69,10 @@ class FeedTableViewController: UITableViewController {
 					}
 					
 					self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
-					
-					self.tableView.reloadData()
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
 				}
 			}
 		}
@@ -73,11 +91,16 @@ class FeedTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TweetTableViewCell else {
+            print("Error on loading cell")
+            
+            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        }
 
         // Configure the cell...
 		if self.tweetArray.count > 0 {
 			cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+            cell.profileImageView.image = self.profileImg
 		} else {
 			cell.textLabel?.text = ""
 		}
