@@ -3,8 +3,6 @@
 A Twitter clone
 
 ### Changelog
-**v0.1.8-alpha**
-- 
 
 **19 November 2019 - v0.1.7-alpha.3**
 - Fixed autolayout in Profile view
@@ -49,3 +47,18 @@ A Twitter clone
 **17 December 2018 - v0.1.0-alpha**
 - Initial commit
 - Initial setup with Firebase done
+
+
+### INSTALL
+
+This project uses Firebase's real-time database. So it's required that you set up your own Firebase project since it needs a custom Google ```plist``` file. I used the database structure below.
+
+```
+root
+	Users
+		id
+			tweet
+				tweetid
+					timestamp
+					tweet_content
+```
