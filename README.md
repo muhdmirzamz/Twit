@@ -2,7 +2,8 @@
 
 A Twitter clone
 
-### Changelog
+### Changelog 
+
 **19 November 2019 - v0.1.7-alpha.3**
 - Fixed autolayout in Profile view
 - Changed image picker in profile settings to fullscreen modal presentation style
@@ -46,3 +47,17 @@ A Twitter clone
 **17 December 2018 - v0.1.0-alpha**
 - Initial commit
 - Initial setup with Firebase done
+
+
+### INSTALL  
+This project uses Firebase's Real-time database. You need to build your own Firebase project since it has a custom google ```plist``` file. This is roughly the database structure.
+  
+```
+root
+	Users
+		User1
+			Tweet
+				id
+					timestamp
+					tweet_content
+```
