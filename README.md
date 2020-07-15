@@ -62,3 +62,10 @@ root
 					timestamp
 					tweet_content
 ```
+
+### Technologies used/Lessons learnt
+
+- Firebase Real-time database
+- Cocoapods
+- Dealing with time in Swift
+- CoreData
