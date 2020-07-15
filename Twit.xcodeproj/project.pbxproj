@@ -14,7 +14,7 @@
 		AA74DB8821C7C1D100D7DAD3 /* Twit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA74DB8621C7C1D100D7DAD3 /* Twit.xcdatamodeld */; };
 		AA74DB8A21C7C1D300D7DAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB8921C7C1D300D7DAD3 /* Assets.xcassets */; };
 		AA74DB8D21C7C1D400D7DAD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB8B21C7C1D400D7DAD3 /* LaunchScreen.storyboard */; };
-		AA74DB9521C7C33A00D7DAD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA74DB9421C7C33A00D7DAD3 /* GoogleService-Info.plist */; };
+		AA8BB19B24BED019008DD4C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA8BB19A24BED019008DD4C4 /* GoogleService-Info.plist */; };
 		AAA651C623969C760046E587 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA651C523969C760046E587 /* TweetTableViewCell.swift */; };
 		AAB9DEB621F2DE900029397C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB9DEB521F2DE900029397C /* Tweet.swift */; };
 		AAC3153121F88D5900F5DD33 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3153021F88D5900F5DD33 /* ProfileViewController.swift */; };
@@ -37,7 +37,7 @@
 		AA74DB8921C7C1D300D7DAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA74DB8C21C7C1D400D7DAD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA74DB8E21C7C1D400D7DAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA74DB9421C7C33A00D7DAD3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AA8BB19A24BED019008DD4C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAA651C523969C760046E587 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		AAB9DEB521F2DE900029397C /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		AAC3153021F88D5900F5DD33 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				AA74DB8921C7C1D300D7DAD3 /* Assets.xcassets */,
 				AA74DB8B21C7C1D400D7DAD3 /* LaunchScreen.storyboard */,
 				AA74DB8E21C7C1D400D7DAD3 /* Info.plist */,
-				AA74DB9421C7C33A00D7DAD3 /* GoogleService-Info.plist */,
+				AA8BB19A24BED019008DD4C4 /* GoogleService-Info.plist */,
 				AA74DB8621C7C1D100D7DAD3 /* Twit.xcdatamodeld */,
 			);
 			path = Twit;
@@ -177,7 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA74DB8D21C7C1D400D7DAD3 /* LaunchScreen.storyboard in Resources */,
-				AA74DB9521C7C33A00D7DAD3 /* GoogleService-Info.plist in Resources */,
+				AA8BB19B24BED019008DD4C4 /* GoogleService-Info.plist in Resources */,
 				AA74DB8A21C7C1D300D7DAD3 /* Assets.xcassets in Resources */,
 				AA74DB8521C7C1D100D7DAD3 /* Main.storyboard in Resources */,
 			);
