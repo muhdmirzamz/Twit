@@ -24,18 +24,18 @@ class FeedTableViewController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		if let currUser = Auth.auth().currentUser {
-            let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
-            storageRef.getData(maxSize: ((1 * 1024 * 1024))) { (data, error) in
-                if error == nil {
-                    if let data = data {
-                        self.profileImg = UIImage.init(data: data)
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
+//            let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
+//            storageRef.getData(maxSize: ((1 * 1024 * 1024))) { (data, error) in
+//                if error == nil {
+//                    if let data = data {
+//                        self.profileImg = UIImage.init(data: data)
+//
+//                        DispatchQueue.main.async {
+//                            self.tableView.reloadData()
+//                        }
+//                    }
+//                }
+//            }
             
 
             // download tweets
