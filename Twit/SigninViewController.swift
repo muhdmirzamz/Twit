@@ -10,7 +10,7 @@ import UIKit
 
 import FirebaseAuth
 
-class SigninViewController: UIViewController {
+class SigninViewController: UIViewController, UITextFieldDelegate {
 
 	@IBOutlet var usernameTxtField: UITextField!
 	@IBOutlet var passwordTxtField: UITextField!
@@ -18,8 +18,20 @@ class SigninViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        
+        self.usernameTxtField.delegate = self
+        self.passwordTxtField.delegate = self
         // Do any additional setup after loading the view.
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return false
+    }
+    
 	
 	@IBAction func signin() {
 		guard let username = self.usernameTxtField.text else {

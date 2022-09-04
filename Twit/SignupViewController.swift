@@ -9,6 +9,7 @@
 import UIKit
 
 import FirebaseAuth
+import FirebaseDatabase
 
 class SignupViewController: UIViewController {
 	
@@ -36,9 +37,20 @@ class SignupViewController: UIViewController {
             if let dataResult = dataResult {
                 alertTitle = "Sign up successful"
                 
-                okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-                    self.dismiss(animated: true, completion: nil)
-                })
+                
+                let profileDict: [String : Any] = [
+                        "bio": "",
+                        "name": "",
+                        "username": ""
+                ]
+                
+                if let currUser = Auth.auth().currentUser {
+                    Database.database().reference().child("/profile/\(currUser.uid)").setValue(profileDict)
+                    
+                    okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                }
                 
                 print("User email: \(dataResult.user.email)")
             } else {
