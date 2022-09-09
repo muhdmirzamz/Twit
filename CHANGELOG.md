@@ -1,6 +1,11 @@
 
 ### Changelog
 
+**9 September 2022**
+- Updated Profile page with header image and autolayout
+- Added several image assets
+- You can now create a new tweet based on the new database structure
+
 **5 September 2022**
 - Updated Firebase
 - Restructured database

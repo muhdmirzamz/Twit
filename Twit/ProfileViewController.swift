@@ -12,11 +12,11 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileSettingsProtocol {
+class ProfileViewController: UIViewController, ProfileSettingsProtocol {
     
-    @IBOutlet var bio: UILabel!
+//    @IBOutlet var bio: UILabel!
     
-	@IBOutlet var tableview: UITableView!
+//	@IBOutlet var tableview: UITableView!
 	@IBOutlet var imageView: UIImageView!
 	
 	var tweetArray = [Tweet]()
@@ -27,8 +27,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         // Do any additional setup after loading the view.
 		
-		self.tableview.dataSource = self
-		self.tableview.delegate = self
+//		self.tableview.dataSource = self
+//		self.tableview.delegate = self
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -72,35 +72,35 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 					
 					self.tweetArray.sort(by: {$0.timestamp > $1.timestamp})
 					
-					DispatchQueue.main.async {
-                        self.tableview.reloadData()
-                    }
+//					DispatchQueue.main.async {
+//                        self.tableview.reloadData()
+//                    }
 				}
 			}
 		}
 	}
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.tweetArray.count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TweetTableViewCell else {
-            print("Error on loading cell")
-            
-            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        }
-
-        // Configure the cell...
-        if self.tweetArray.count > 0 {
-            cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
-            cell.profileImageView.image = self.profileImg
-        } else {
-            cell.textLabel?.text = ""
-        }
-		
-		return cell
-	}
+//	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//		return self.tweetArray.count
+//	}
+//
+//	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//		guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TweetTableViewCell else {
+//            print("Error on loading cell")
+//
+//            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        }
+//
+//        // Configure the cell...
+//        if self.tweetArray.count > 0 {
+//            cell.textLabel?.text = self.tweetArray[indexPath.row].tweetContent
+//            cell.profileImageView.image = self.profileImg
+//        } else {
+//            cell.textLabel?.text = ""
+//        }
+//
+//		return cell
+//	}
     
     func dismissViewController() {
         self.dismiss(animated: true, completion: nil)

@@ -29,15 +29,18 @@ class ComposeTweetViewController: UIViewController {
 	@IBAction func tweet() {
 		let dateString = self.getStringForDateToday()
 		
+        guard let currUser = Auth.auth().currentUser else {
+            return
+        }
+        
 		let tweetDict: [String : Any] = [
-				"tweet_content": self.textview.text,
-				"timestamp": dateString
+            "user_id": currUser.uid,
+            "tweet_content": self.textview.text!,
+            "timestamp": dateString
 		]
 		
-		if let currUser = Auth.auth().currentUser {
-            Database.database().reference().child("/Users/\(currUser.uid)/tweet").childByAutoId().setValue(tweetDict)
-            self.dismiss(animated: true, completion: nil)
-		}
+        Database.database().reference().child("/tweets").childByAutoId().setValue(tweetDict)
+        self.dismiss(animated: true, completion: nil)
 	}
 	
 	func getStringForDateToday() -> String {

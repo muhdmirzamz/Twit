@@ -164,14 +164,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="peV-7E-shU">
-                                <rect key="frame" x="0.0" y="44" width="375" height="141"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peV-7E-shU">
+                                <rect key="frame" x="0.0" y="44" width="375" height="320"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testheaderimg" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-wl-Gm5">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mq4-wl-Gm5" secondAttribute="bottom" constant="192" id="Cle-Pa-6ck"/>
+                                    <constraint firstItem="mq4-wl-Gm5" firstAttribute="leading" secondItem="peV-7E-shU" secondAttribute="leading" id="SBm-wO-LlN"/>
+                                    <constraint firstItem="mq4-wl-Gm5" firstAttribute="top" secondItem="peV-7E-shU" secondAttribute="top" id="lt8-a2-r4Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="mq4-wl-Gm5" secondAttribute="trailing" id="s4o-bf-Dhq"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AuO-4r-qcc"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AuO-4r-qcc" firstAttribute="bottom" secondItem="peV-7E-shU" secondAttribute="bottom" constant="254" id="BF8-q9-67d"/>
+                            <constraint firstItem="peV-7E-shU" firstAttribute="leading" secondItem="AuO-4r-qcc" secondAttribute="leading" id="ghN-6C-Jbn"/>
+                            <constraint firstItem="peV-7E-shU" firstAttribute="trailing" secondItem="AuO-4r-qcc" secondAttribute="trailing" id="jHC-fB-rXf"/>
+                            <constraint firstItem="peV-7E-shU" firstAttribute="top" secondItem="AuO-4r-qcc" secondAttribute="top" id="qeA-23-1ni"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kix-Ba-vkG">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="u6v-NX-8Va">
@@ -373,4 +389,7 @@
             <point key="canvasLocation" x="4001" y="-9"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="testheaderimg" width="2048" height="1152"/>
+    </resources>
 </document>
