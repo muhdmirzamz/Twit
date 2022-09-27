@@ -170,12 +170,19 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testheaderimg" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-wl-Gm5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charleyrivers" translatesAutoresizingMaskIntoConstraints="NO" id="yRk-3e-MPP">
+                                        <rect key="frame" x="8" y="136" width="84" height="71"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="mq4-wl-Gm5" secondAttribute="bottom" constant="192" id="Cle-Pa-6ck"/>
+                                    <constraint firstItem="yRk-3e-MPP" firstAttribute="leading" secondItem="peV-7E-shU" secondAttribute="leading" constant="8" id="K7d-Y2-elp"/>
                                     <constraint firstItem="mq4-wl-Gm5" firstAttribute="leading" secondItem="peV-7E-shU" secondAttribute="leading" id="SBm-wO-LlN"/>
+                                    <constraint firstAttribute="bottom" secondItem="yRk-3e-MPP" secondAttribute="bottom" constant="113" id="bEh-pK-i3O"/>
+                                    <constraint firstAttribute="trailing" secondItem="yRk-3e-MPP" secondAttribute="trailing" constant="283" id="f1U-Aq-zId"/>
                                     <constraint firstItem="mq4-wl-Gm5" firstAttribute="top" secondItem="peV-7E-shU" secondAttribute="top" id="lt8-a2-r4Q"/>
+                                    <constraint firstItem="yRk-3e-MPP" firstAttribute="top" secondItem="mq4-wl-Gm5" secondAttribute="bottom" constant="8" symbolic="YES" id="ptY-LU-Gqr"/>
                                     <constraint firstAttribute="trailing" secondItem="mq4-wl-Gm5" secondAttribute="trailing" id="s4o-bf-Dhq"/>
                                 </constraints>
                             </view>
@@ -390,6 +397,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="charleyrivers" width="250" height="250"/>
         <image name="testheaderimg" width="2048" height="1152"/>
     </resources>
 </document>

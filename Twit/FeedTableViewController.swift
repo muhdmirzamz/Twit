@@ -41,20 +41,28 @@ class FeedTableViewController: UITableViewController {
             // download tweets
             self.tweetArray.removeAll()
             
-			let ref = Database.database().reference().child("/Users/\(currUser.uid)/tweet")
+			let ref = Database.database().reference().child("/tweets")
 
 			ref.observeSingleEvent(of: .value) { (snapshot) in
-				if let dict = snapshot.value as? NSDictionary {
-					for i in dict {
+                
+//                print("json response: \(snapshot)")
+                let jsonResponse = snapshot
+                
+				if let tweetsDictionary = jsonResponse.value as? NSDictionary {
+					for individualTweetDict in tweetsDictionary {
 
+//                        print("Individual tweet dict: \(individualTweetDict)")
+                        
 						let tweet = Tweet()
 
-						if let innerDict = i.value as? NSDictionary {
-							if let timestamp = innerDict.value(forKey: "timestamp") as? String {
+						if let tweetObject = individualTweetDict.value as? NSDictionary {
+//                            print("Inner Dict: \(innerDict)")
+                            
+							if let timestamp = tweetObject.value(forKey: "timestamp") as? String {
 								tweet.timestamp = timestamp
 							}
 
-							if let tweetContent = innerDict.value(forKey: "tweet_content") as? String {
+							if let tweetContent = tweetObject.value(forKey: "tweet_content") as? String {
 								tweet.tweetContent = tweetContent
 							}
 
