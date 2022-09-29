@@ -1,6 +1,9 @@
 
 ### Changelog
 
+**30 September 2022**
+- Refactored Profile View Settings screen for image upload portion
+
 **28 September 2022**
 - You are now able to retrieve tweets using the new database structure
 - Modified profile picture layout for autolayout

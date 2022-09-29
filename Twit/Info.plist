@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<string>NO</string>
+	<false/>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<string>NO</string>
 	<key>CFBundleDevelopmentRegion</key>

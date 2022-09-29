@@ -57,32 +57,32 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case 0:
-            let imgPicker = UIImagePickerController()
-            imgPicker.allowsEditing = true
-            imgPicker.sourceType = .photoLibrary
-            imgPicker.delegate = self
-            imgPicker.modalPresentationStyle = .fullScreen
-            
-            self.present(imgPicker, animated: true, completion: nil)
-            
-            break
-            
-        case 2:
-            do {
-                try Auth.auth().signOut()
+            case 0:
+                let imgPicker = UIImagePickerController()
+                imgPicker.allowsEditing = true
+                imgPicker.sourceType = .photoLibrary
+                imgPicker.delegate = self
+                imgPicker.modalPresentationStyle = .fullScreen
+                
+                self.present(imgPicker, animated: true, completion: nil)
+                
+                break
+                
+            case 2:
+                do {
+                    try Auth.auth().signOut()
 
-                self.dismiss(animated: true) {
-                    self.delegate?.dismissViewController()
+                    self.dismiss(animated: true) {
+                        self.delegate?.dismissViewController()
+                    }
+                } catch {
+                    print("Error signing out!\n")
                 }
-            } catch {
-                print("Error signing out!\n")
-            }
 
-            break
-            
-        default:
-            break
+                break
+                
+            default:
+                break
         }
         
         
@@ -97,24 +97,33 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 		
 		if let currUser = Auth.auth().currentUser {
 			let storageRef = Storage.storage().reference().child("\(currUser.uid)/profile_img.png")
+            
+            var title = ""
 			do {
 				let data = try Data.init(contentsOf: url!)
 				
                 storageRef.putData(data)
+
+                title = "Image successfully uploaded"
 			} catch {
 				print("Error")
+                
+                title = "Image failed to upload"
 			}
+            
+            
+            self.dismiss(animated: true) {
+                let controller = UIAlertController.init(title: title, message: "", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+                
+                controller.addAction(okAction)
+                
+                self.present(controller, animated: true, completion: nil)
+            }
 		}
 		
-		self.dismiss(animated: true) {
-			let controller = UIAlertController.init(title: "Image successfully uploaded", message: "", preferredStyle: .alert)
-			
-			let okAction = UIAlertAction.init(title: "OK", style: .default, handler: nil)
-			
-			controller.addAction(okAction)
-			
-			self.present(controller, animated: true, completion: nil)
-		}
+		
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

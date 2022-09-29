@@ -170,7 +170,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="testheaderimg" translatesAutoresizingMaskIntoConstraints="NO" id="mq4-wl-Gm5">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="charleyrivers" translatesAutoresizingMaskIntoConstraints="NO" id="yRk-3e-MPP">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yRk-3e-MPP">
                                         <rect key="frame" x="8" y="136" width="84" height="71"/>
                                     </imageView>
                                 </subviews>
@@ -203,6 +203,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="yRk-3e-MPP" id="6uy-mB-WMH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9YY-ea-2YU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +400,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="charleyrivers" width="250" height="250"/>
         <image name="testheaderimg" width="2048" height="1152"/>
     </resources>
 </document>
