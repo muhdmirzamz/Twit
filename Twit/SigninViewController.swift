@@ -49,16 +49,24 @@ class SigninViewController: UIViewController, UITextFieldDelegate {
 			var okAction: UIAlertAction?
 			
 			if let dataResult = dataResult {
-				alertTitle = "Sign in successful"
+//				alertTitle = "Sign in successful"
 				
-				okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
-					DispatchQueue.main.async {
-						let tabBarController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabBarController") as? UITabBarController
-                        
-                        tabBarController?.modalPresentationStyle = .fullScreen
-						self.present(tabBarController!, animated: true, completion: nil)
-					}
-				})
+//				okAction = UIAlertAction.init(title: "OK", style: .default, handler: { (action) in
+//					DispatchQueue.main.async {
+//						let tabBarController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabBarController") as? UITabBarController
+//
+//                        tabBarController?.modalPresentationStyle = .fullScreen
+//						self.present(tabBarController!, animated: true, completion: nil)
+//					}
+//				})
+                
+                self.usernameTxtField.text = ""
+                self.passwordTxtField.text = ""
+                
+                let tabBarController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "tabBarController") as? UITabBarController
+                
+                tabBarController?.modalPresentationStyle = .fullScreen
+                self.present(tabBarController!, animated: true, completion: nil)
 				
                 print("User email: \(dataResult.user.email)")
 			} else {
@@ -71,16 +79,16 @@ class SigninViewController: UIViewController, UITextFieldDelegate {
 					
 					self.usernameTxtField.text = ""
 					self.passwordTxtField.text = ""
+                    
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController.init(title: alertTitle, message: alertMsg, preferredStyle: .alert)
+                        
+                        
+                        alert.addAction(okAction!)
+                        
+                        self.present(alert, animated: true, completion: nil)
+                    }
 				}
-			}
-			
-			DispatchQueue.main.async {
-				let alert = UIAlertController.init(title: alertTitle, message: alertMsg, preferredStyle: .alert)
-				
-				
-				alert.addAction(okAction!)
-				
-				self.present(alert, animated: true, completion: nil)
 			}
 		})
 	}

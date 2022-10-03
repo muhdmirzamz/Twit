@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, ProfileSettingsProtocol {
 		
 //		self.tableview.dataSource = self
 //		self.tableview.delegate = self
+        
+        
     }
 	
 	override func viewWillAppear(_ animated: Bool) {

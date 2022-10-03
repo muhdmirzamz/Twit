@@ -20,7 +20,7 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
 	
     var delegate: ProfileSettingsProtocol?
     
-	var settingsArray = ["Profile Picture", "Profile Bio", "Logout"]
+	var settingsArray = ["Profile Picture", "Username", "Profile Bio", "Logout"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,8 +67,18 @@ class ProfileSettingsTableViewController: UITableViewController, UIImagePickerCo
                 self.present(imgPicker, animated: true, completion: nil)
                 
                 break
+            
+            case 1:
+                guard let profileUsernameViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileUsernameViewController") as? ProfileUsernameViewController else {
+                    return
+                }
                 
-            case 2:
+                self.navigationController?.pushViewController(profileUsernameViewController, animated: true)
+                        
+        
+                break
+                
+            case 3:
                 do {
                     try Auth.auth().signOut()
 

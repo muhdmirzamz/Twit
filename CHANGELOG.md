@@ -1,6 +1,9 @@
 
 ### Changelog
 
+**4 October 2022**
+- Removed successful sign in alert
+
 **30 September 2022**
 - Refactored Profile View Settings screen for image upload portion
 
